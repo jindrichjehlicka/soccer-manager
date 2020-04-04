@@ -10,6 +10,7 @@ import { TeamComponent } from "./components/team/team.component";
 import { PlayersComponent } from "./components/players/players.component";
 import { AddMatchComponent } from "./components/add-match/add-match.component";
 import { AddTeamComponent } from './components/add-team/add-team.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AddTeamComponent } from './components/add-team/add-team.component';
     TeamComponent,
     PlayersComponent,
     AddMatchComponent,
-    AddTeamComponent
+    AddTeamComponent,
+    PlayerListComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
