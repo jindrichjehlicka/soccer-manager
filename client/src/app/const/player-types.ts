@@ -1,31 +1,31 @@
 import { PlayerType } from "./../models/player-type";
 
-export const PLAYER_TYPES: any = {
-  OFFENSIVE: "offensive",
-  MIDFIELD: "midfield",
-  DEFENSIVE: "defensive",
-  GOALKEEPER: "goalkeeper"
-};
+export enum PlayerTypes {
+  Offensive = "offensive",
+  Midfield = "midfield",
+  Defensive = "defensive",
+  Goalkeeper = "goalkeeper",
+}
 
 export const PLAYER_TYPES_SPEAKS: Array<PlayerType> = [
   {
-    type: PLAYER_TYPES.OFFENSIVE,
+    type: PlayerTypes.Offensive,
     nameSingular: "Útočník",
-    namePlural: "Útočníci"
+    namePlural: "Útočníci",
   },
   {
-    type: PLAYER_TYPES.MIDFIELD,
+    type: PlayerTypes.Midfield,
     nameSingular: "Záložník",
-    namePlural: "Záložníci"
+    namePlural: "Záložníci",
   },
   {
-    type: PLAYER_TYPES.DEFENSIVE,
+    type: PlayerTypes.Defensive,
     nameSingular: "Obránce",
-    namePlural: "Obránci"
+    namePlural: "Obránci",
   },
   {
-    type: PLAYER_TYPES.GOALKEEPER,
+    type: PlayerTypes.Goalkeeper,
     nameSingular: "Brankář",
-    namePlural: "Brankáři"
-  }
+    namePlural: "Brankáři",
+  },
 ];

@@ -1,19 +1,19 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Team } from "src/app/models/team";
 import { Player } from "src/app/models/player";
-import { PLAYER_TYPES } from "src/app/const/player-types";
+import { PlayerTypes } from "src/app/const/player-types";
 import { PlayerType } from "./../../models/player-type";
 import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-team",
   templateUrl: "./team.component.html",
-  styleUrls: ["./team.component.sass"]
+  styleUrls: ["./team.component.sass"],
 })
 export class TeamComponent implements OnInit {
   @Input() team: Team;
   players: Player[];
-  playerTypes: PlayerType[];
+  playerTypes: String[];
   groupedPlayers: Object;
 
   constructor() {
@@ -21,43 +21,43 @@ export class TeamComponent implements OnInit {
     this.players = [
       {
         name: "John 1",
-        type: "offensive"
+        type: "offensive",
       },
       {
         name: "John 2",
-        type: "defensive"
+        type: "defensive",
       },
       {
         name: "John 2",
-        type: "defensive"
+        type: "defensive",
       },
       {
         name: "John 3",
-        type: "midfield"
+        type: "midfield",
       },
       {
         name: "John 3",
-        type: "midfield"
+        type: "midfield",
       },
       {
         name: "John 3",
-        type: "midfield"
+        type: "midfield",
       },
       {
         name: "John 4",
-        type: "offensive"
+        type: "offensive",
       },
       {
         name: "John 5",
-        type: "offensive"
+        type: "offensive",
       },
       {
         name: "John 6",
-        type: "goalkeeper"
-      }
+        type: "goalkeeper",
+      },
     ];
 
-    this.playerTypes = PLAYER_TYPES;
+    this.playerTypes = Object.values(PlayerTypes);
   }
 
   ngOnInit(): void {
@@ -66,11 +66,18 @@ export class TeamComponent implements OnInit {
 
   groupPlayersByType() {
     return this.players.reduce((obj, value) => {
-      var key = value.type;
-      if (obj[key] == null) obj[key] = [];
+      const { type } = value;
+      if (obj[type] == null) obj[type] = [];
 
-      obj[key].push(value);
+      obj[type].push(value);
       return obj;
     }, {});
+  }
+
+  addPlayer(player: Player) {
+    // TODO add to DB
+    this.players.push(player);
+
+    this.groupedPlayers = this.groupPlayersByType();
   }
 }

@@ -11,6 +11,7 @@ import { PlayersComponent } from "./components/players/players.component";
 import { AddMatchComponent } from "./components/add-match/add-match.component";
 import { AddTeamComponent } from './components/add-team/add-team.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
+import { AddPlayerComponent } from './components/add-player/add-player.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     PlayersComponent,
     AddMatchComponent,
     AddTeamComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    AddPlayerComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

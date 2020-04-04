@@ -1,1 +1,8 @@
-<p>player-list works!</p>
+<div>
+  <div class="title">
+    {{title}}
+  </div>
+  <div *ngFor="let player of players" class="name">
+    {{player.name}}
+  </div>
+</div>

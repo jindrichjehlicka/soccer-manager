@@ -1,6 +1,7 @@
 <div>
   <div class="team">{{team.name}}</div>
+  <app-add-player (addPlayer)="addPlayer($event)"></app-add-player>
   <div *ngFor="let type of playerTypes">
-    <app-player-list [players]="groupedPlayers[type]"></app-player-list>
+    <app-player-list [type]="type" [players]="groupedPlayers[type]"></app-player-list>
   </div>
 </div>
