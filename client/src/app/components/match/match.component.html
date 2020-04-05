@@ -1,14 +1,23 @@
 <div class="match container">
-  <app-add-match *ngIf="(match);else addTeamsBlock" (addMatch)="addMatch($event)"></app-add-match>
+  <app-add-match
+    *ngIf="!match; else addTeamsBlock"
+    (addMatch)="addMatch($event)"
+  ></app-add-match>
   <ng-template #addTeamsBlock>
     <!-- TODO: delete testing match -->
-    <h3>{{match ? match.name: "Testing match"}}</h3>
+    <h3>{{ match.name }}</h3>
 
-    <app-add-team *ngIf="teams.length < 2" (addTeam)="addTeam($event)"></app-add-team>
+    <app-add-team
+      *ngIf="teams.length < 2"
+      (addTeam)="addTeam($event)"
+    ></app-add-team>
 
     <div class="teams">
-      <app-team *ngFor="let team of teams" [team]="team" class="team"></app-team>
+      <app-team
+        *ngFor="let team of teams"
+        [team]="team"
+        class="team"
+      ></app-team>
     </div>
-
   </ng-template>
 </div>

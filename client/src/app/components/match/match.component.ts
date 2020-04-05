@@ -5,7 +5,7 @@ import { Team } from "src/app/models/team";
 @Component({
   selector: "app-match",
   templateUrl: "./match.component.html",
-  styleUrls: ["./match.component.sass"]
+  styleUrls: ["./match.component.sass"],
 })
 export class MatchComponent implements OnInit {
   @Input() match: Match;
@@ -15,10 +15,13 @@ export class MatchComponent implements OnInit {
 
   constructor() {
     // TODO change to an empty array after backend is done
-    this.teams = [{ name: "Test 1" }, { name: "Test 2" }];
+    // this.teams = [{ name: "Test 1" }, { name: "Test 2" }];
+    this.teams = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("match", this.match);
+  }
 
   addMatch(match: Match) {
     this.match = match;

@@ -17,31 +17,31 @@ export class TeamComponent implements OnInit {
   constructor() {
     // TODO : replace with ajax!!
     this.players = [
-      {
-        id: 1,
-        name: "John Doe 1",
-        type: "offensive",
-      },
-      {
-        id: 2,
-        name: "John Doe 2",
-        type: "defensive",
-      },
-      {
-        id: 3,
-        name: "John Doe 3",
-        type: "defensive",
-      },
-      {
-        id: 3,
-        name: "John Doe 4",
-        type: "midfield",
-      },
-      {
-        id: 3,
-        name: "John Doe 5",
-        type: "goalkeeper",
-      },
+      // {
+      //   id: 1,
+      //   name: "John Doe 1",
+      //   type: "offensive",
+      // },
+      // {
+      //   id: 2,
+      //   name: "John Doe 2",
+      //   type: "defensive",
+      // },
+      // {
+      //   id: 3,
+      //   name: "John Doe 3",
+      //   type: "defensive",
+      // },
+      // {
+      //   id: 3,
+      //   name: "John Doe 4",
+      //   type: "midfield",
+      // },
+      // {
+      //   id: 3,
+      //   name: "John Doe 5",
+      //   type: "goalkeeper",
+      // },
     ];
 
     this.playerTypes = Object.values(PlayerTypes);

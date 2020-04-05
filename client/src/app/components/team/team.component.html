@@ -1,7 +1,7 @@
 <div class="team">
   <div>{{ team.name }}</div>
   <app-add-player (addPlayer)="addPlayer($event)"></app-add-player>
-  <div class="player-list">
+  <div class="player-list" *ngIf="players.length">
     <ng-container *ngFor="let type of playerTypes">
       <app-player-list
         *ngIf="groupedPlayers[type]"
