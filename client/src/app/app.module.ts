@@ -12,6 +12,8 @@ import { AddMatchComponent } from "./components/add-match/add-match.component";
 import { AddTeamComponent } from './components/add-team/add-team.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { TeamsComponent } from './components/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AddPlayerComponent } from './components/add-player/add-player.component
     AddMatchComponent,
     AddTeamComponent,
     PlayerListComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    MatchesComponent,
+    TeamsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

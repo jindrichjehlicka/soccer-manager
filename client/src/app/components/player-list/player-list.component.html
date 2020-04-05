@@ -1,8 +1,11 @@
-<div>
+<div class="player-list">
   <div class="title">
-    {{title}}
+    <h4>{{ title }}</h4>
   </div>
   <div *ngFor="let player of players" class="name">
-    {{player.name}}
+    {{ player.name }}
+    <button (click)="onDelete(player)" class="btn del">
+      Delete
+    </button>
   </div>
 </div>

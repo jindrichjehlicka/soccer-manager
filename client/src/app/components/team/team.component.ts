@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Team } from "src/app/models/team";
 import { Player } from "src/app/models/player";
 import { PlayerTypes } from "src/app/const/player-types";
-import { PlayerType } from "./../../models/player-type";
-import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-team",
@@ -13,46 +11,35 @@ import { ThrowStmt } from "@angular/compiler";
 export class TeamComponent implements OnInit {
   @Input() team: Team;
   players: Player[];
-  playerTypes: String[];
-  groupedPlayers: Object;
+  playerTypes: string[];
+  groupedPlayers: object;
 
   constructor() {
     // TODO : replace with ajax!!
     this.players = [
       {
-        name: "John 1",
+        id: 1,
+        name: "John Doe 1",
         type: "offensive",
       },
       {
-        name: "John 2",
+        id: 2,
+        name: "John Doe 2",
         type: "defensive",
       },
       {
-        name: "John 2",
+        id: 3,
+        name: "John Doe 3",
         type: "defensive",
       },
       {
-        name: "John 3",
+        id: 3,
+        name: "John Doe 4",
         type: "midfield",
       },
       {
-        name: "John 3",
-        type: "midfield",
-      },
-      {
-        name: "John 3",
-        type: "midfield",
-      },
-      {
-        name: "John 4",
-        type: "offensive",
-      },
-      {
-        name: "John 5",
-        type: "offensive",
-      },
-      {
-        name: "John 6",
+        id: 3,
+        name: "John Doe 5",
         type: "goalkeeper",
       },
     ];
@@ -77,7 +64,13 @@ export class TeamComponent implements OnInit {
   addPlayer(player: Player) {
     // TODO add to DB
     this.players.push(player);
+    this.groupedPlayers = this.groupPlayersByType();
+  }
 
+  deletePlayer(player: Player) {
+    // add htpp and change to delete by id
+    console.log("delete");
+    this.players = this.players.filter((item) => item.name !== player.name);
     this.groupedPlayers = this.groupPlayersByType();
   }
 }

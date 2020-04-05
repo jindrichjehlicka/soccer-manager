@@ -1,5 +1,5 @@
 import { Player } from "./../../models/player";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { PLAYER_TYPES_SPEAKS } from "src/app/const/player-types";
 
 @Component({
@@ -8,6 +8,8 @@ import { PLAYER_TYPES_SPEAKS } from "src/app/const/player-types";
   styleUrls: ["./player-list.component.sass"],
 })
 export class PlayerListComponent implements OnInit {
+  @Output() deletePlayer: EventEmitter<Player> = new EventEmitter();
+
   @Input() players: Player[];
   @Input() type: string;
   title: string;
@@ -25,4 +27,6 @@ export class PlayerListComponent implements OnInit {
 
     return this.players.length > 1 ? namePlural : nameSingular;
   }
+
+  onDelete = (player: Player) => this.deletePlayer.emit(player);
 }

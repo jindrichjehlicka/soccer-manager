@@ -1,8 +1,19 @@
 <form class="form" (ngSubmit)="onSubmit()">
-  <input type="text" name="playerName" [(ngModel)]="playerName" placeholder="Add player...">
-  <select [(ngModel)]="playerType" name="playerType" title="Select a player type">
-    <option value="" disabled selected>Select a player type</option>
-    <option [ngValue]="type.type" *ngFor="let type of playerTypesWithSpeaks">{{type.nameSingular}}</option>
+  <input
+    type="text"
+    name="playerName"
+    [(ngModel)]="playerName"
+    placeholder="Add player..."
+  />
+  <select
+    [(ngModel)]="playerType"
+    name="playerType"
+    title="Select a player type"
+  >
+    <!-- <option value="" disabled selected>Select a player type</option> -->
+    <option [ngValue]="type.type" *ngFor="let type of playerTypesWithSpeaks">{{
+      type.nameSingular
+    }}</option>
   </select>
-  <input type="submit" value="Submit" class="btn">
+  <input type="submit" value="Submit" class="btn" />
 </form>
