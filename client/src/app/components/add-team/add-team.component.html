@@ -1,5 +1,14 @@
-<form class="form" (ngSubmit)="onSubmit()">
-  <input type="text" name="teamName" [(ngModel)]="teamName" placeholder="Add team...">
-  <input type="submit" value="Submit" class="btn">
-</form>
-
+<div>
+  <form class="form" (ngSubmit)="onSubmit()">
+    <input
+      type="text"
+      name="teamName"
+      [(ngModel)]="teamName"
+      placeholder="Add team..."
+    />
+    <input type="submit" value="Submit" class="btn" />
+  </form>
+  <div *ngFor="let error of errors">
+    {{ error }}
+  </div>
+</div>

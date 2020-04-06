@@ -12,10 +12,12 @@ export class AddPlayerComponent implements OnInit {
   playerTypesWithSpeaks: Object[];
   playerName: string;
   playerType: string;
+  errors: string[];
 
   constructor() {}
 
   ngOnInit(): void {
+    this.errors = [];
     this.playerTypesWithSpeaks = PLAYER_TYPES_SPEAKS;
   }
 
@@ -25,8 +27,16 @@ export class AddPlayerComponent implements OnInit {
       type: this.playerType,
     };
 
-    this.addPlayer.emit(player);
-    this.playerName = "";
-    this.playerType = "";
+    if (this.playerName && this.playerType) {
+      this.addPlayer.emit(player);
+      this.playerName = "";
+      this.playerType = "";
+      this.errors = [];
+    } else {
+      // todo import into a different file
+      this.errors = [];
+      const error = `Vyplňte, prosím, jméno a pozici hráče!`;
+      this.errors.push(error);
+    }
   }
 }
