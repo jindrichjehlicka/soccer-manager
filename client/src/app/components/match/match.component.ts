@@ -14,23 +14,28 @@ export class MatchComponent implements OnInit {
 
   teams: Team[];
 
-  constructor(private matchService: MatchService) {
-    // TODO change to an empty array after backend is done
-    // this.teams = [{ name: "Test 1" }, { name: "Test 2" }];
-    // this.teams = [];
-  }
+  constructor(private matchService: MatchService) {}
 
   ngOnInit(): void {
-    this.matchService
-      .getMatches()
-      .subscribe((matches) => console.log("matches", matches));
+    this.getAllMatches();
+    this.teams = [];
   }
 
   addMatch(match: Match) {
-    this.match = match;
+    this.matchService
+      .addMatch(match)
+      .subscribe((newMatch) => (this.match = newMatch));
+    // this.match = match;
+    this.getAllMatches();
   }
 
   addTeam(team: Team) {
     this.teams.push(team);
+  }
+
+  getAllMatches() {
+    this.matchService
+      .getMatches()
+      .subscribe((matches) => console.log("matches", matches));
   }
 }

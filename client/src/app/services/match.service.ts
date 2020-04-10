@@ -13,20 +13,25 @@ const httpOptions = {
   providedIn: "root",
 })
 export class MatchService {
-  url = "http://localhost:8181/";
+  url = "http://localhost:8181/games";
 
   constructor(private http: HttpClient) {}
 
   getMatches(): Observable<Match[]> {
-    return this.http.get<Match[]>(`${this.url}games`);
+    return this.http.get<Match[]>(this.url);
   }
 
-  // deleteMatch(Match: Match): Observable<any> {
-  //   const url = `${this.url}/${Match.id}`;
-  //   return this.http.delete<Match>(url, httpOptions);
-  // }
+  addMatch(Match: Match): Observable<any> {
+    return this.http.post<Match>(this.url, Match, httpOptions);
+  }
 
-  // addMatch(Match: Match): Observable<any> {
-  //   return this.http.post<Match>(this.url, Match, httpOptions);
-  // }
+  deleteMatch(Match: Match): Observable<any> {
+    const url = `${this.url}${Match.id}`;
+    return this.http.delete<Match>(url, httpOptions);
+  }
+
+  updateMatch(Match: Match): Observable<any> {
+    const url = `${this.url}${Match.id}`;
+    return this.http.put<Match>(url, Match, httpOptions);
+  }
 }
