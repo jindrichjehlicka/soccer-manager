@@ -1,3 +1,4 @@
+import { TeamService } from "./../../services/team.service";
 import { MatchService } from "./../../services/match.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Match } from "src/app/models/match";
@@ -14,7 +15,10 @@ export class MatchComponent implements OnInit {
 
   teams: Team[];
 
-  constructor(private matchService: MatchService) {}
+  constructor(
+    private matchService: MatchService,
+    private teamService: TeamService
+  ) {}
 
   ngOnInit(): void {
     this.getAllMatches();
@@ -25,17 +29,32 @@ export class MatchComponent implements OnInit {
     this.matchService
       .addMatch(match)
       .subscribe((newMatch) => (this.match = newMatch));
-    // this.match = match;
     this.getAllMatches();
   }
 
   addTeam(team: Team) {
-    this.teams.push(team);
+    console.log("this match", this.match);
+    this.teamService.addTeam(team).subscribe((newTeam) => {
+      this.teams.push(newTeam);
+      console.log("newTeam:", newTeam);
+      console.log(this.teams.length > 1 ? "teamTwoId" : "teamOneId");
+      this.match[this.teams.length > 1 ? "teamTwoId" : "teamOneId"] =
+        newTeam.id;
+      console.log("update match with id??!!", this.match);
+      this.updateMatch(this.match);
+    });
   }
 
   getAllMatches() {
     this.matchService
       .getMatches()
       .subscribe((matches) => console.log("matches", matches));
+  }
+
+  updateMatch(match: Match) {
+    console.log("updating match", match);
+    this.matchService.updateMatch(match).subscribe((updatedMatch) => {
+      console.log(this.match);
+    });
   }
 }

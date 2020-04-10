@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: "root",
 })
 export class MatchService {
-  url = "http://localhost:8181/games";
+  url = "http://localhost:8181/games/";
 
   constructor(private http: HttpClient) {}
 
@@ -31,7 +31,7 @@ export class MatchService {
   }
 
   updateMatch(Match: Match): Observable<any> {
-    const url = `${this.url}${Match.id}`;
+    const url = `${this.url}`;
     return this.http.put<Match>(url, Match, httpOptions);
   }
 }
