@@ -1,7 +1,8 @@
+import { PlayerService } from "./../../services/player.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Team } from "src/app/models/team";
 import { Player } from "src/app/models/player";
-import { PlayerTypes } from "src/app/const/player-types";
+import { PlayerPositions } from "src/app/const/player-types";
 
 @Component({
   selector: "app-team",
@@ -11,66 +12,40 @@ import { PlayerTypes } from "src/app/const/player-types";
 export class TeamComponent implements OnInit {
   @Input() team: Team;
   players: Player[];
-  playerTypes: string[];
+  playerPositions: string[];
   groupedPlayers: object;
 
-  constructor() {
-    // TODO : replace with ajax!!
-    this.players = [
-      // {
-      //   id: 1,
-      //   name: "John Doe 1",
-      //   type: "offensive",
-      // },
-      // {
-      //   id: 2,
-      //   name: "John Doe 2",
-      //   type: "defensive",
-      // },
-      // {
-      //   id: 3,
-      //   name: "John Doe 3",
-      //   type: "defensive",
-      // },
-      // {
-      //   id: 3,
-      //   name: "John Doe 4",
-      //   type: "midfield",
-      // },
-      // {
-      //   id: 3,
-      //   name: "John Doe 5",
-      //   type: "goalkeeper",
-      // },
-    ];
+  constructor(private playerService: PlayerService) {
+    this.players = [];
 
-    this.playerTypes = Object.values(PlayerTypes);
+    this.playerPositions = Object.values(PlayerPositions);
   }
 
   ngOnInit(): void {
-    this.groupedPlayers = this.groupPlayersByType();
+    this.groupedPlayers = this.groupPlayersByPosition();
   }
 
-  groupPlayersByType() {
+  groupPlayersByPosition() {
     return this.players.reduce((obj, value) => {
-      const { type } = value;
-      if (obj[type] == null) obj[type] = [];
+      const { position } = value;
+      if (obj[position] == null) obj[position] = [];
 
-      obj[type].push(value);
+      obj[position].push(value);
       return obj;
     }, {});
   }
 
   addPlayer(player: Player) {
-    // TODO add to DB
-    this.players.push(player);
-    this.groupedPlayers = this.groupPlayersByType();
+    player.teamId = this.team.id;
+    console.log("new player: ", player);
+    this.playerService.addPlayer(player).subscribe((newPlayer) => {
+      this.players.push(newPlayer);
+      this.groupedPlayers = this.groupPlayersByPosition();
+    });
   }
 
   deletePlayer(player: Player) {
-    // add htpp and change to delete by id
-    console.log("delete");
     this.players = this.players.filter((item) => item.name !== player.name);
-    this.groupedPlayers = this.groupPlayersByType();
+    this.groupedPlayers = this.groupPlayersByPosition();
   }
 }

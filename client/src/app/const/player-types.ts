@@ -1,30 +1,30 @@
 import { PlayerType } from "./../models/player-type";
 
-export enum PlayerTypes {
+export enum PlayerPositions {
   Offensive = "offensive",
   Midfield = "midfield",
   Defensive = "defensive",
   Goalkeeper = "goalkeeper",
 }
 
-export const PLAYER_TYPES_SPEAKS: Array<PlayerType> = [
+export const PLAYER_POSITIONS_SPEAKS: Array<PlayerType> = [
   {
-    type: PlayerTypes.Offensive,
+    type: PlayerPositions.Offensive,
     nameSingular: "Útočník",
     namePlural: "Útočníci",
   },
   {
-    type: PlayerTypes.Midfield,
+    type: PlayerPositions.Midfield,
     nameSingular: "Záložník",
     namePlural: "Záložníci",
   },
   {
-    type: PlayerTypes.Defensive,
+    type: PlayerPositions.Defensive,
     nameSingular: "Obránce",
     namePlural: "Obránci",
   },
   {
-    type: PlayerTypes.Goalkeeper,
+    type: PlayerPositions.Goalkeeper,
     nameSingular: "Brankář",
     namePlural: "Brankáři",
   },

@@ -1,6 +1,6 @@
 import { Player } from "./../../models/player";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { PLAYER_TYPES_SPEAKS } from "src/app/const/player-types";
+import { PLAYER_POSITIONS_SPEAKS } from "src/app/const/player-types";
 
 @Component({
   selector: "app-player-list",
@@ -11,7 +11,7 @@ export class PlayerListComponent implements OnInit {
   @Output() deletePlayer: EventEmitter<Player> = new EventEmitter();
 
   @Input() players: Player[];
-  @Input() type: string;
+  @Input() position: string;
   title: string;
 
   constructor() {}
@@ -21,8 +21,8 @@ export class PlayerListComponent implements OnInit {
   }
 
   getTitle() {
-    const { nameSingular, namePlural } = PLAYER_TYPES_SPEAKS.find(
-      (speak) => speak.type === this.type
+    const { nameSingular, namePlural } = PLAYER_POSITIONS_SPEAKS.find(
+      (speak) => speak.type === this.position
     );
 
     return this.players.length > 1 ? namePlural : nameSingular;

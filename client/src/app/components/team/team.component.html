@@ -2,11 +2,11 @@
   <div>{{ team.name }}</div>
   <app-add-player (addPlayer)="addPlayer($event)"></app-add-player>
   <div class="player-list" *ngIf="players.length">
-    <ng-container *ngFor="let type of playerTypes">
+    <ng-container *ngFor="let position of playerPositions">
       <app-player-list
-        *ngIf="groupedPlayers[type]"
-        [type]="type"
-        [players]="groupedPlayers[type]"
+        *ngIf="groupedPlayers[position]"
+        [position]="position"
+        [players]="groupedPlayers[position]"
         (deletePlayer)="deletePlayer($event)"
       ></app-player-list>
     </ng-container>

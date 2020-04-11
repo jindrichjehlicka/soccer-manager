@@ -7,16 +7,16 @@
       placeholder="Add player..."
     />
     <select
-      [(ngModel)]="playerType"
-      name="playerType"
-      title="Select a player type"
+      [(ngModel)]="playerPosition"
+      name="playerPosition"
+      title="Select a player position"
       class="select"
     >
       <!-- <option value="" disabled selected>Select a player type</option> -->
       <option
-        [ngValue]="type.type"
-        *ngFor="let type of playerTypesWithSpeaks"
-        >{{ type.nameSingular }}</option
+        [ngValue]="position.type"
+        *ngFor="let position of playerPositionsWithSpeaks"
+        >{{ position.nameSingular }}</option
       >
     </select>
     <input type="submit" value="Submit" class="btn" />

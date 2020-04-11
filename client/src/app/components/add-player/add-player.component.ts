@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { PLAYER_TYPES_SPEAKS } from "src/app/const/player-types";
+import { PLAYER_POSITIONS_SPEAKS } from "src/app/const/player-types";
 
 @Component({
   selector: "app-add-player",
@@ -9,28 +9,27 @@ import { PLAYER_TYPES_SPEAKS } from "src/app/const/player-types";
 export class AddPlayerComponent implements OnInit {
   @Output() addPlayer: EventEmitter<any> = new EventEmitter();
 
-  playerTypesWithSpeaks: Object[];
+  playerPositionsWithSpeaks: Object[];
   playerName: string;
-  playerType: string;
+  playerPosition: string;
   errors: string[];
 
   constructor() {}
 
   ngOnInit(): void {
     this.errors = [];
-    this.playerTypesWithSpeaks = PLAYER_TYPES_SPEAKS;
+    this.playerPositionsWithSpeaks = PLAYER_POSITIONS_SPEAKS;
   }
 
   onSubmit() {
     const player = {
       name: this.playerName,
-      type: this.playerType,
+      position: this.playerPosition,
     };
-
-    if (this.playerName && this.playerType) {
+    if (this.playerName && this.playerPosition) {
       this.addPlayer.emit(player);
       this.playerName = "";
-      this.playerType = "";
+      this.playerPosition = "";
       this.errors = [];
     } else {
       // todo import into a different file

@@ -33,14 +33,10 @@ export class MatchComponent implements OnInit {
   }
 
   addTeam(team: Team) {
-    console.log("this match", this.match);
     this.teamService.addTeam(team).subscribe((newTeam) => {
       this.teams.push(newTeam);
-      console.log("newTeam:", newTeam);
-      console.log(this.teams.length > 1 ? "teamTwoId" : "teamOneId");
       this.match[this.teams.length > 1 ? "teamTwoId" : "teamOneId"] =
         newTeam.id;
-      console.log("update match with id??!!", this.match);
       this.updateMatch(this.match);
     });
   }
