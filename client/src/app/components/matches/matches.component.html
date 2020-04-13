@@ -1,1 +1,17 @@
-<p>matches works!</p>
+<div class="matches-list container">
+  <div class="title">
+    <h2>Matches</h2>
+  </div>
+  <div *ngFor="let match of matches" class="match">
+    {{ match.name }}
+    <!-- TODO: add location -->
+    <div class="actions">
+      <button [routerLink]="['/matches', match.id]" class="btn btn-primary">
+        View
+      </button>
+      <button (click)="deleteMatch(match)" class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

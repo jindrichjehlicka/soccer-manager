@@ -1,4 +1,4 @@
-import { Player } from "./../models/player";
+import { Player } from "src/app/models/player";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -13,12 +13,17 @@ const httpOptions = {
   providedIn: "root",
 })
 export class PlayerService {
-  url = "http://localhost:8181/players";
+  url = "http://localhost:8181/players/";
 
   constructor(private http: HttpClient) {}
 
-  getPlayeres(): Observable<Player[]> {
+  getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.url);
+  }
+
+  getPlayersByTeam(teamId: number): Observable<Player[]> {
+    const url = `${this.url}team/${teamId}`;
+    return this.http.get<Player[]>(url);
   }
 
   addPlayer(Player: Player): Observable<any> {

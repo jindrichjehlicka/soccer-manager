@@ -21,6 +21,11 @@ export class MatchService {
     return this.http.get<Match[]>(this.url);
   }
 
+  getMatch(id: number): Observable<Match> {
+    const url = `${this.url}${id}`;
+    return this.http.get<Match>(url);
+  }
+
   addMatch(Match: Match): Observable<any> {
     return this.http.post<Match>(this.url, Match, httpOptions);
   }

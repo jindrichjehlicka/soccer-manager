@@ -13,12 +13,17 @@ const httpOptions = {
   providedIn: "root",
 })
 export class TeamService {
-  url = "http://localhost:8181/teams";
+  url = "http://localhost:8181/teams/";
 
   constructor(private http: HttpClient) {}
 
-  getTeames(): Observable<Team[]> {
+  getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.url);
+  }
+
+  getTeam(id: number): Observable<Team> {
+    const url = `${this.url}${id}`;
+    return this.http.get<Team>(url);
   }
 
   addTeam(Team: Team): Observable<any> {

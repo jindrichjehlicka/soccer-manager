@@ -22,7 +22,12 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupedPlayers = this.groupPlayersByPosition();
+    this.playerService
+      .getPlayersByTeam(this.team.id)
+      .subscribe((players: Player[]) => {
+        this.players = players || [];
+        this.groupedPlayers = this.groupPlayersByPosition();
+      });
   }
 
   groupPlayersByPosition() {
@@ -37,7 +42,6 @@ export class TeamComponent implements OnInit {
 
   addPlayer(player: Player) {
     player.teamId = this.team.id;
-    console.log("new player: ", player);
     this.playerService.addPlayer(player).subscribe((newPlayer) => {
       this.players.push(newPlayer);
       this.groupedPlayers = this.groupPlayersByPosition();
@@ -45,6 +49,7 @@ export class TeamComponent implements OnInit {
   }
 
   deletePlayer(player: Player) {
+    // TODO: delete by id
     this.players = this.players.filter((item) => item.name !== player.name);
     this.groupedPlayers = this.groupPlayersByPosition();
   }

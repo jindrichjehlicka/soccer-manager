@@ -4,7 +4,7 @@
   </div>
   <div *ngFor="let player of players" class="name">
     {{ player.name }}
-    <button (click)="onDelete(player)" class="btn del">
+    <button (click)="onDelete(player)" class="btn btn-danger">
       Delete
     </button>
   </div>
