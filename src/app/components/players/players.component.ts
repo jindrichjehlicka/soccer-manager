@@ -28,6 +28,9 @@ export class PlayersComponent implements OnInit {
 
   deletePlayer(player: Player): void {
     this.playersService.deletePlayer(player).subscribe((response: any) => {
+      this.filteredPlayers = this.filteredPlayers.filter(
+        (p) => p.id !== player.id
+      );
       this.players = this.players.filter((p) => p.id !== player.id);
     });
   }

@@ -3,4 +3,5 @@ export class Player {
   name: string;
   position: string;
   teamId: number;
+  isSubstitute: boolean;
 }

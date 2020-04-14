@@ -10,5 +10,11 @@
         (deletePlayer)="deletePlayer($event)"
       ></app-player-list>
     </ng-container>
+    <app-player-list
+      *ngIf="substitutePlayers"
+      [position]="substitute"
+      [players]="substitutePlayers"
+      (deletePlayer)="deletePlayer($event)"
+    ></app-player-list>
   </div>
 </div>

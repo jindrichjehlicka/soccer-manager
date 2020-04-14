@@ -1,6 +1,6 @@
 <div class="matches-list container">
   <div class="title">
-    <h2>Matches</h2>
+    <h2>Zápasy</h2>
   </div>
   <input
     type="text"
@@ -17,10 +17,10 @@
     <!-- TODO: add location -->
     <div class="actions">
       <button [routerLink]="['/matches', match.id]" class="btn btn-primary">
-        View
+        Prohlédnout
       </button>
       <button (click)="deleteMatch(match)" class="btn btn-danger">
-        Delete
+        Smazat
       </button>
     </div>
   </div>

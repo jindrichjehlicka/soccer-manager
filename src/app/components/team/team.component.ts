@@ -14,6 +14,8 @@ export class TeamComponent implements OnInit {
   players: Player[];
   playerPositions: string[];
   groupedPlayers: object;
+  substitutePlayers: Player[];
+  substitute: string = "substitute";
 
   constructor(private playerService: PlayerService) {
     this.players = [];
@@ -26,17 +28,20 @@ export class TeamComponent implements OnInit {
       .subscribe((players: Player[]) => {
         this.players = players || [];
         this.groupedPlayers = this.groupPlayersByPosition();
+        this.substitutePlayers = this.players.filter((p) => p.isSubstitute);
       });
   }
 
   groupPlayersByPosition() {
-    return this.players.reduce((obj, value) => {
-      const { position } = value;
-      if (obj[position] == null) obj[position] = [];
+    return this.players
+      .filter((p) => !p.isSubstitute)
+      .reduce((obj, value) => {
+        const { position } = value;
+        if (obj[position] == null) obj[position] = [];
 
-      obj[position].push(value);
-      return obj;
-    }, {});
+        obj[position].push(value);
+        return obj;
+      }, {});
   }
 
   // TODO add limit to players and implement substitues
@@ -44,18 +49,20 @@ export class TeamComponent implements OnInit {
     player.teamId = this.team.id;
     this.playerService.addPlayer(player).subscribe((newPlayer) => {
       this.players.push(newPlayer);
-      this.groupedPlayers = this.groupPlayersByPosition();
+      if (newPlayer.isSubstitute) this.substitutePlayers.push(newPlayer);
+      else this.groupedPlayers = this.groupPlayersByPosition();
     });
   }
 
   deletePlayer(player: Player) {
     // TODO: delete by id
     this.playerService.deletePlayer(player).subscribe((response) => {
-      console.log(response);
-      console.log(player);
       this.players = this.players.filter(({ id }) => id !== player.id);
+      if (player.isSubstitute)
+        this.substitutePlayers = this.substitutePlayers.filter(
+          (p) => p.id === player.id
+        );
+      else this.groupedPlayers = this.groupPlayersByPosition();
     });
-
-    this.groupedPlayers = this.groupPlayersByPosition();
   }
 }

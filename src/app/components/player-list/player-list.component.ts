@@ -11,21 +11,24 @@ export class PlayerListComponent implements OnInit {
   @Output() deletePlayer: EventEmitter<Player> = new EventEmitter();
 
   @Input() players: Player[];
-  @Input() position: string;
+  @Input() position: string = "";
   title: string;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.title = this.getTitle();
+    this.title = this.getTitle(this.position);
   }
 
-  getTitle() {
+  getTitle(position, singular = false) {
+    // const { nameSingular, namePlural } = PLAYER_POSITIONS_SPEAKS.find(
     const { nameSingular, namePlural } = PLAYER_POSITIONS_SPEAKS.find(
-      (speak) => speak.type === this.position
+      (speak) => {
+        return speak.type === position;
+      }
     );
 
-    return this.players.length > 1 ? namePlural : nameSingular;
+    return this.players.length < 2 || singular ? nameSingular : namePlural;
   }
 
   onDelete = (player: Player) => this.deletePlayer.emit(player);

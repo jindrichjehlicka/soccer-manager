@@ -27,9 +27,6 @@ export class MatchComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get("id");
     if (id) {
       this.matchService.getMatch(parseInt(id)).subscribe((match) => {
-        match.startDate = match.startDate
-          ? new Date(match.startDate).toUTCString()
-          : null;
         this.match = match;
         const { teamOneId, teamTwoId } = match;
         if (teamOneId) this.getTeam(teamOneId);
@@ -40,9 +37,6 @@ export class MatchComponent implements OnInit {
 
   addMatch(match: Match) {
     this.matchService.addMatch(match).subscribe((newMatch) => {
-      newMatch.startDate = newMatch.startDate
-        ? new Date(newMatch.startDate).toUTCString()
-        : null;
       this.match = newMatch;
     });
   }
@@ -66,5 +60,9 @@ export class MatchComponent implements OnInit {
     this.matchService.updateMatch(match).subscribe((updatedMatch) => {
       console.log(this.match);
     });
+  }
+
+  formatDate(date: string): string {
+    return new Date(date).toUTCString();
   }
 }

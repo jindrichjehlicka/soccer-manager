@@ -26,6 +26,7 @@ export class TeamsComponent implements OnInit {
 
   deleteTeam(team: Team) {
     this.teamService.deleteTeam(team).subscribe((response) => {
+      this.filteredTeams = this.filteredTeams.filter((m) => m.id !== team.id);
       this.teams = this.teams.filter((m) => m.id !== team.id);
     });
   }

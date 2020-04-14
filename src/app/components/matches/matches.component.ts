@@ -31,12 +31,12 @@ export class MatchesComponent implements OnInit {
   }
 
   deleteMatch(match: Match) {
-    this.matchService
-      .deleteMatch(match)
-      .subscribe(
-        (response) =>
-          (this.matches = this.matches.filter((m) => m.id !== match.id))
+    this.matchService.deleteMatch(match).subscribe((response) => {
+      this.filteredMatches = this.filteredMatches.filter(
+        (m) => m.id !== match.id
       );
+      this.matches = this.matches.filter((m) => m.id !== match.id);
+    });
   }
 
   private getDate(date: any): number {

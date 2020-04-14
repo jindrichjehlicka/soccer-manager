@@ -9,6 +9,11 @@ export enum PlayerPositions {
 
 export const PLAYER_POSITIONS_SPEAKS: Array<PlayerType> = [
   {
+    type: "substitute",
+    nameSingular: "Náhradník",
+    namePlural: "Náhradníci",
+  },
+  {
     type: PlayerPositions.Offensive,
     nameSingular: "Útočník",
     namePlural: "Útočníci",

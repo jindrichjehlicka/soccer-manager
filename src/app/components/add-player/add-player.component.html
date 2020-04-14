@@ -6,19 +6,26 @@
       [(ngModel)]="playerName"
       placeholder="Add player..."
     />
+
     <select
       [(ngModel)]="playerPosition"
       name="playerPosition"
       title="Select a player position"
       class="select"
     >
-      <!-- <option value="" disabled selected>Select a player type</option> -->
-      <option
-        [ngValue]="position.type"
-        *ngFor="let position of playerPositionsWithSpeaks"
-        >{{ position.nameSingular }}</option
-      >
+      <option [ngValue]="position" *ngFor="let position of playerPositions">{{
+        getOption(position)
+      }}</option>
     </select>
+    <div class="substitute">
+      <input
+        type="checkbox"
+        name="isSubstitute"
+        [(ngModel)]="isSubstitute"
+        ng-checked="isSubstitute"
+      /><label for="checkbox">Náhradník</label>
+    </div>
+
     <input type="submit" value="Submit" class="btn" />
   </form>
   <div *ngFor="let error of errors">
