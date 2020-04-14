@@ -11,7 +11,7 @@
       ></app-player-list>
     </ng-container>
     <app-player-list
-      *ngIf="substitutePlayers"
+      *ngIf="substitutePlayers.length"
       [position]="substitute"
       [players]="substitutePlayers"
       (deletePlayer)="deletePlayer($event)"

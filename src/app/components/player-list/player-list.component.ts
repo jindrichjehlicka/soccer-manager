@@ -19,6 +19,10 @@ export class PlayerListComponent implements OnInit {
   ngOnInit(): void {
     this.title = this.getTitle(this.position);
   }
+  ngOnChange():void {
+    this.title = this.getTitle(this.position);
+
+  }
 
   getTitle(position, singular = false) {
     // const { nameSingular, namePlural } = PLAYER_POSITIONS_SPEAKS.find(
