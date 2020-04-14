@@ -5,7 +5,11 @@
   ></app-add-match>
   <ng-template #addTeamsBlock>
     <!-- TODO: delete testing match -->
-    <h3>{{ match.name }}</h3>
+    <div class="details">
+      <h3>{{ match.name }}</h3>
+      <h4>{{ match.startDate }}</h4>
+      <h4>{{ match.location }}</h4>
+    </div>
 
     <app-add-team
       *ngIf="teams.length < 2"

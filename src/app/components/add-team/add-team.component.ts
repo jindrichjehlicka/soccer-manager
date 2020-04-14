@@ -9,6 +9,7 @@ export class AddTeamComponent implements OnInit {
   @Output() addTeam: EventEmitter<any> = new EventEmitter();
 
   teamName: string;
+  teamCountry: string;
   errors: string[];
 
   constructor() {}
@@ -18,11 +19,13 @@ export class AddTeamComponent implements OnInit {
   onSubmit() {
     const team = {
       name: this.teamName,
+      country: this.teamCountry,
     };
 
     if (this.teamName) {
       this.addTeam.emit(team);
       this.teamName = "";
+      this.teamCountry = "";
       this.errors = [];
     } else {
       // todo import into a different file

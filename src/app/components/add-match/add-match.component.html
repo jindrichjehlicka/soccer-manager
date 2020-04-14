@@ -4,9 +4,26 @@
       type="text"
       name="matchName"
       [(ngModel)]="matchName"
-      placeholder="Create new match..."
+      placeholder="Name new match..."
     />
-    <input type="submit" value="Submit" class="btn" />
+    <input
+      type="datetime-local"
+      name="matchStartDate"
+      [(ngModel)]="matchStartDate"
+    />
+
+    <input
+      type="text"
+      name="matchLocation"
+      [(ngModel)]="matchLocation"
+      placeholder="Add location..."
+    />
+    <input
+      type="submit"
+      value="Submit"
+      title="Select match start date..."
+      class="btn"
+    />
   </form>
   <div *ngFor="let error of errors">
     {{ error }}

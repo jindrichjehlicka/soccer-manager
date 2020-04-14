@@ -1,6 +1,7 @@
 import { Match } from "src/app/models/match";
 import { Component, OnInit } from "@angular/core";
 import { MatchService } from "./../../services/match.service";
+import { filterArrayOfObjects } from "src/app/helpers/filters";
 
 @Component({
   selector: "app-matches",
@@ -9,23 +10,25 @@ import { MatchService } from "./../../services/match.service";
 })
 export class MatchesComponent implements OnInit {
   matches: Match[];
+  filteredMatches: Match[];
+  search: string;
 
   constructor(private matchService: MatchService) {}
 
   ngOnInit(): void {
     this.getAllMatches();
   }
-
+  // TODO add pagination
   getAllMatches(): void {
     this.matchService.getMatches().subscribe((matches) => {
-      this.matches = matches.sort(
-        (a: Match, b: Match) =>
-          this.getDate(a.startDate) - this.getDate(b.startDate)
-      );
+      this.filteredMatches = this.matches = matches
+        .map(({ startDate, ...rest }) => ({
+          startDate: startDate ? new Date(startDate).toUTCString() : null,
+          ...rest,
+        }))
+        .sort((a, b) => this.getDate(a.startDate) - this.getDate(b.startDate));
     });
   }
-
-  showMatch(match: Match): void {}
 
   deleteMatch(match: Match) {
     this.matchService
@@ -36,7 +39,14 @@ export class MatchesComponent implements OnInit {
       );
   }
 
-  private getDate(date: Date): number {
-    return date != null ? date.getTime() : 0;
+  private getDate(date: any): number {
+    return date ? new Date(date).getTime() : 0;
+  }
+
+  filterMatches(search: string): void {
+    const searchFields = ["name", "location"];
+    this.filteredMatches = search
+      ? filterArrayOfObjects(this.matches, search, searchFields)
+      : this.matches;
   }
 }

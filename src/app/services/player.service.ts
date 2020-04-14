@@ -26,17 +26,17 @@ export class PlayerService {
     return this.http.get<Player[]>(url);
   }
 
-  addPlayer(Player: Player): Observable<any> {
-    return this.http.post<Player>(this.url, Player, httpOptions);
+  addPlayer(player: Player): Observable<any> {
+    return this.http.post<Player>(this.url, player, httpOptions);
   }
 
-  deletePlayer(Player: Player): Observable<any> {
-    const url = `${this.url}${Player.id}`;
+  deletePlayer(player: Player): Observable<any> {
+    const url = `${this.url}${player.id}`;
     return this.http.delete<Player>(url, httpOptions);
   }
 
-  updatePlayer(Player: Player): Observable<any> {
-    const url = `${this.url}${Player.id}`;
-    return this.http.put<Player>(url, Player, httpOptions);
+  updatePlayer(player: Player): Observable<any> {
+    const url = `${this.url}${player.id}`;
+    return this.http.put<Player>(url, player, httpOptions);
   }
 }

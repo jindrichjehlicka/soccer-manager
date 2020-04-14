@@ -6,6 +6,12 @@
       [(ngModel)]="teamName"
       placeholder="Add team..."
     />
+    <input
+      type="text"
+      name="teamCountry"
+      [(ngModel)]="teamCountry"
+      placeholder="Add team country..."
+    />
     <input type="submit" value="Submit" class="btn" />
   </form>
   <div *ngFor="let error of errors">

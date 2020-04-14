@@ -1,1 +1,23 @@
-<p>teams works!</p>
+<div class="teams-list container">
+  <div class="title">
+    <h2>Teams</h2>
+  </div>
+  <input
+    type="text"
+    (input)="filterTeams($event.target.value)"
+    placeholder="Search teams by name or country"
+  />
+  <div *ngFor="let team of filteredTeams" class="team">
+    <div>
+      <p>{{ team.name }}</p>
+      <p>{{ team.country }}</p>
+    </div>
+
+    <!-- TODO: add location -->
+    <div class="actions">
+      <button (click)="deleteTeam(team)" class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

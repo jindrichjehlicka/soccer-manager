@@ -1,2 +1,23 @@
-<p>players works!</p>
-<!-- todo show all players -->
+<div class="player-list container">
+  <div class="title">
+    <h2>Players</h2>
+  </div>
+  <input
+    type="text"
+    (input)="filterPlayers($event.target.value)"
+    placeholder="Search players by name or position"
+  />
+  <div *ngFor="let player of filteredPlayers" class="player">
+    <div>
+      <p>{{ player.name }}</p>
+      <p>{{ getPositionspeak(player.position) }}</p>
+    </div>
+
+    <!-- TODO: add location -->
+    <div class="actions">
+      <button (click)="deletePlayer(player)" class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

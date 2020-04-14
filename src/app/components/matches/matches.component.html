@@ -2,8 +2,18 @@
   <div class="title">
     <h2>Matches</h2>
   </div>
-  <div *ngFor="let match of matches" class="match">
-    {{ match.name }}
+  <input
+    type="text"
+    (input)="filterMatches($event.target.value)"
+    placeholder="Search matches by name or location"
+  />
+  <div *ngFor="let match of filteredMatches" class="match">
+    <div>
+      <p>{{ match.name }}</p>
+      <p>{{ match.startDate }}</p>
+      <p>{{ match.location }}</p>
+    </div>
+
     <!-- TODO: add location -->
     <div class="actions">
       <button [routerLink]="['/matches', match.id]" class="btn btn-primary">

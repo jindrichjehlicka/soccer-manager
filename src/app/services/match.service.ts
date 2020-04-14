@@ -39,4 +39,9 @@ export class MatchService {
     const url = `${this.url}`;
     return this.http.put<Match>(url, Match, httpOptions);
   }
+
+  getMatchesByTeamId(id: number): Observable<Match[]> {
+    const url = `${this.url}/teams/${id}`;
+    return this.http.put<Match[]>(url, Match, httpOptions);
+  }
 }

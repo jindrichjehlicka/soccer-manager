@@ -17,7 +17,6 @@ export class TeamComponent implements OnInit {
 
   constructor(private playerService: PlayerService) {
     this.players = [];
-
     this.playerPositions = Object.values(PlayerPositions);
   }
 
@@ -40,6 +39,7 @@ export class TeamComponent implements OnInit {
     }, {});
   }
 
+  // TODO add limit to players and implement substitues
   addPlayer(player: Player) {
     player.teamId = this.team.id;
     this.playerService.addPlayer(player).subscribe((newPlayer) => {
@@ -50,7 +50,12 @@ export class TeamComponent implements OnInit {
 
   deletePlayer(player: Player) {
     // TODO: delete by id
-    this.players = this.players.filter((item) => item.name !== player.name);
+    this.playerService.deletePlayer(player).subscribe((response) => {
+      console.log(response);
+      console.log(player);
+      this.players = this.players.filter(({ id }) => id !== player.id);
+    });
+
     this.groupedPlayers = this.groupPlayersByPosition();
   }
 }

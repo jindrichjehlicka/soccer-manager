@@ -1,5 +1,5 @@
 <div class="team">
-  <div>{{ team.name }}</div>
+  <div>{{ team.name }} - {{ team.country }}</div>
   <app-add-player (addPlayer)="addPlayer($event)"></app-add-player>
   <div class="player-list" *ngIf="players.length">
     <ng-container *ngFor="let position of playerPositions">

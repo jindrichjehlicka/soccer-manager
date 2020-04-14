@@ -9,6 +9,9 @@ export class AddMatchComponent implements OnInit {
   @Output() addMatch: EventEmitter<any> = new EventEmitter();
 
   matchName: string;
+  matchStartDate: string;
+  // TODO implement maps API
+  matchLocation: string;
   errors: string[];
 
   constructor() {}
@@ -18,6 +21,8 @@ export class AddMatchComponent implements OnInit {
   onSubmit() {
     const match = {
       name: this.matchName,
+      startDate: this.matchStartDate,
+      location: this.matchLocation,
     };
 
     if (this.matchName) {
@@ -25,10 +30,17 @@ export class AddMatchComponent implements OnInit {
       this.matchName = "";
       this.errors = [];
     } else {
-      // todo import into a different file
+      // todo import errors into a different file
       this.errors = [];
       const error = `Vyplňte, prosím, název zápasu!`;
       this.errors.push(error);
     }
   }
+  // getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) =>
+  //       console.log("position", position)
+  //     );
+  //   }
+  // }
 }
